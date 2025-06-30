@@ -2,9 +2,9 @@
     "frame": {
       "version": "1",
       "name": "BaseBadge",
-      "iconUrl": "https://base-badge.vercel.app/pic.jpg",
+      "iconUrl": "https://base-badge.vercel.app/icon.png",
       "homeUrl": "https://base-badge.vercel.app",
-      "splashImageUrl": "https://base-badge.vercel.app/pic.jpg",
+      "splashImageUrl": "https://base-badge.vercel.app/image.jpg",
       "splashBackgroundColor": "#f5f0ec"
     }
   }
