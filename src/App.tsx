@@ -4,6 +4,7 @@ import Welcome from "./components/Welcome";
 import Navbar from "./components/Navbar"; // <- new
 import "./index.css"; // <- for background styling
 import { useTokenBalance } from "./hooks/useTokenBalance";
+import { FaRocket } from "react-icons/fa";
 
 function App() {
   const [started, setStarted] = useState(false);
@@ -31,7 +32,9 @@ function App() {
     </>
   ) : (
     <>
-      <h2 className="text-2xl font-semibold mb-4">Buy $BLOOM to get started 🚀</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-blue-600 flex items-center gap-2">
+  Buy $BLOOM to get started <FaRocket />
+</h2>
       <a
         href="https://app.uniswap.org/swap?chain=base&outputCurrency=0x14d1461e2a88929d9ac36c152bd54f58cb8095fe"
         target="_blank"
