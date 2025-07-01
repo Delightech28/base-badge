@@ -6,7 +6,7 @@ import "./index.css"; // <- for background styling
 import { useTokenBalance } from "./hooks/useTokenBalance";
 import SwapToBloom from "./components/SwapToBloom";
 import ConnectWallet from "./components/ConnectWallet";
-import { useAccount } from "./hooks/useAccount";
+import { useAccount } from "wagmi";
 
 function App() {
   const [started, setStarted] = useState(false);
