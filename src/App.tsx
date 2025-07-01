@@ -37,8 +37,8 @@ function App() {
             </>
           ) : (
             <>
-              <h2 className="text-2xl font-semibold mb-4 text-blue-600 flex items-center gap-2">
-                Buy $BLOOM to get started <FaRocket />
+              <h2 className="text-2xl font-semibold mb-4 text-blue-600">
+                Buy $BLOOM to get started
               </h2>
               <button
                 className="mt-4 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
