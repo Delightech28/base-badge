@@ -10,7 +10,8 @@ import { useAccount } from "wagmi";
 
 function App() {
   const [started, setStarted] = useState(false);
-  const { hasBalance } = useTokenBalance();
+  // const { hasBalance } = useTokenBalance();
+  const hasBalance = false; // TEMP: force buy section for all users
   const [showSwap, setShowSwap] = useState(false);
   const [showConnectPrompt, setShowConnectPrompt] = useState(false);
   const { address } = useAccount();
@@ -18,6 +19,16 @@ function App() {
   useEffect(() => {
     sdk.actions.ready();
   }, []);
+
+  // Automatically show swap after connecting if user does not have $BLOOM
+  useEffect(() => {
+    if (address && showConnectPrompt) {
+      setShowConnectPrompt(false);
+      if (!hasBalance) {
+        setShowSwap(true);
+      }
+    }
+  }, [address, hasBalance, showConnectPrompt]);
 
   return (
     <>
