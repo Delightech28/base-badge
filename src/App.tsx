@@ -41,7 +41,7 @@ function App() {
                 Buy $BLOOM to get started <FaRocket />
               </h2>
               <button
-                className="mt-4 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="mt-4 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
                 onClick={() => setShowSwap(true)}
               >
                 Buy $BLOOM

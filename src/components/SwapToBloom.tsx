@@ -98,8 +98,9 @@ export default function SwapToBloom({ onBack }: { onBack?: () => void }) {
         <button
           className="mb-4 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 float-left"
           onClick={onBack}
+          aria-label="Back"
         >
-          ← Back
+          ←
         </button>
       )}
       <h2 className="text-2xl font-bold mb-4 text-blue-600">Swap BASE for $BLOOM</h2>
