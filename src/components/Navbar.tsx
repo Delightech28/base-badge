@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./Navbar.css";
 import logo from "../assets/pic.jpg"; // Add your logo to /assets
 
