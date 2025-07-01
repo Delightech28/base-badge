@@ -114,7 +114,7 @@ export default function SwapToBloom({ onBack }: { onBack?: () => void }) {
         placeholder="Amount of BASE to swap"
         value={amount}
         onChange={e => setAmount(e.target.value)}
-        className="border rounded px-4 py-2 mb-4 w-full"
+        className="border rounded px-4 py-2 mb-4 w-full text-black"
       />
       <button
         className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
