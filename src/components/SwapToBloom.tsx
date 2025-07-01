@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAccount, useBalance, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
+import React from "react";
 
 // Uniswap V3 Router address on Base mainnet
 const UNISWAP_V3_ROUTER = "0x327Df1E6de05895d2ab08513aaDD9313Fe505d86";
@@ -37,7 +38,7 @@ const uniswapV3RouterAbi = [
   }
 ];
 
-export default function SwapToBloom() {
+export default function SwapToBloom({ onBack }: { onBack?: () => void }) {
   const { address } = useAccount();
   const [amount, setAmount] = useState("");
   const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
@@ -94,6 +95,14 @@ export default function SwapToBloom() {
 
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto mt-8 text-center">
+      {onBack && (
+        <button
+          className="mb-4 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 float-left"
+          onClick={onBack}
+        >
+          ← Back
+        </button>
+      )}
       <h2 className="text-2xl font-bold mb-4 text-blue-600">Swap BASE for $BLOOM</h2>
       <div className="mb-2 text-gray-700">
         Your BASE balance: {loadingBalance ? "..." : baseBalance?.formatted || 0}
