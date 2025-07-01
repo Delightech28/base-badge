@@ -3,7 +3,6 @@ import { sdk } from "@farcaster/frame-sdk";
 import Welcome from "./components/Welcome";
 import Navbar from "./components/Navbar"; // <- new
 import "./index.css"; // <- for background styling
-import { useTokenBalance } from "./hooks/useTokenBalance";
 import SwapToBloom from "./components/SwapToBloom";
 import ConnectWallet from "./components/ConnectWallet";
 import { useAccount } from "wagmi";
