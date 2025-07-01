@@ -9,9 +9,7 @@ import { useAccount } from "wagmi";
 import { useTokenBalance } from "./hooks/useTokenBalance";
 
 function App() {
-  const [started, setStarted] = useState(false);
   const { hasBalance } = useTokenBalance();
-  const [showSwap, setShowSwap] = useState(false);
   const [showConnectPrompt, setShowConnectPrompt] = useState(false);
   const { address } = useAccount();
   const [navStack, setNavStack] = useState<string[]>(["welcome"]);
@@ -79,7 +77,7 @@ function App() {
           </button>
         </div>
       ) : (
-        <Welcome onProceed={() => { setStarted(true); goTo("buy"); }} />
+        <Welcome onProceed={() => { goTo("buy"); }} />
       )}
     </>
   );
