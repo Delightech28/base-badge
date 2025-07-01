@@ -6,11 +6,11 @@ import "./index.css"; // <- for background styling
 import SwapToBloom from "./components/SwapToBloom";
 import ConnectWallet from "./components/ConnectWallet";
 import { useAccount } from "wagmi";
+import { useTokenBalance } from "./hooks/useTokenBalance";
 
 function App() {
   const [started, setStarted] = useState(false);
-  // const { hasBalance } = useTokenBalance();
-  const hasBalance = false; // TEMP: force buy section for all users
+  const { hasBalance } = useTokenBalance();
   const [showSwap, setShowSwap] = useState(false);
   const [showConnectPrompt, setShowConnectPrompt] = useState(false);
   const { address } = useAccount();
@@ -19,12 +19,14 @@ function App() {
     sdk.actions.ready();
   }, []);
 
-  // Automatically show swap after connecting if user does not have $BLOOM
+  // Automatically show correct section after connecting
   useEffect(() => {
     if (address && showConnectPrompt) {
       setShowConnectPrompt(false);
-      if (!hasBalance) {
+      if (hasBalance) {
         setShowSwap(true);
+      } else {
+        setShowSwap(false);
       }
     }
   }, [address, hasBalance, showConnectPrompt]);
@@ -50,32 +52,29 @@ function App() {
           <SwapToBloom onBack={() => setShowSwap(false)} />
         </div>
       ) : started ? (
-        <div className="min-h-screen flex flex-col items-center justify-center text-center p-6 relative z-10 text-white">
-          {hasBalance ? (
-            <>
-              <h2 className="text-2xl font-semibold mb-4">You already hold $BLOOM!</h2>
-              <p className="text-lg">You're eligible for the Founder NFT. Stay tuned!</p>
-            </>
-          ) : (
-            <>
-              <h2 className="text-2xl font-semibold mb-4 text-blue-600">
-                Buy $BLOOM to get started
-              </h2>
-              <button
-                className="mt-4 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
-                onClick={() => {
-                  if (!address) {
-                    setShowConnectPrompt(true);
-                  } else {
-                    setShowSwap(true);
-                  }
-                }}
-              >
-                Buy $BLOOM
-              </button>
-            </>
-          )}
-        </div>
+        hasBalance ? (
+          <div className="min-h-screen flex flex-col items-center justify-center text-center p-6 relative z-10 text-white">
+            <SwapToBloom onBack={() => setShowSwap(false)} />
+          </div>
+        ) : (
+          <div className="min-h-screen flex flex-col items-center justify-center text-center p-6 relative z-10 text-white">
+            <h2 className="text-2xl font-semibold mb-4 text-blue-600">
+              Buy $BLOOM to get started
+            </h2>
+            <button
+              className="mt-4 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
+              onClick={() => {
+                if (!address) {
+                  setShowConnectPrompt(true);
+                } else {
+                  setShowSwap(true);
+                }
+              }}
+            >
+              Buy $BLOOM
+            </button>
+          </div>
+        )
       ) : (
         <Welcome onProceed={() => setStarted(true)} />
       )}

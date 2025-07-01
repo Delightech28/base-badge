@@ -36,7 +36,7 @@ export default function Welcome({ onProceed }: { onProceed: () => void }) {
         className="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all cursor-pointer"
         whileTap={{ scale: 0.95 }}
       >
-        Let’s Go
+        Connect Wallet
       </motion.button>
     </div>
   );
