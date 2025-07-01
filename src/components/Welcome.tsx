@@ -1,5 +1,6 @@
 // src/components/Welcome.tsx
 import { motion } from "framer-motion";
+import { FaRocket, FaStar, FaUserShield } from "react-icons/fa";
 
 export default function Welcome({ onProceed }: { onProceed: () => void }) {
   return (
@@ -8,10 +9,12 @@ export default function Welcome({ onProceed }: { onProceed: () => void }) {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-4xl font-bold mb-4"
+        className="text-4xl font-bold mb-4 flex items-center gap-2"
       >
-        Welcome to Base Badge 🏅
+        <FaUserShield className="text-blue-600 text-3xl" />
+        Welcome to Base Badge
       </motion.h1>
+
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -19,14 +22,21 @@ export default function Welcome({ onProceed }: { onProceed: () => void }) {
         className="text-lg max-w-md"
       >
         Earn by buying <span className="font-semibold">$BADGE</span> and completing onchain tasks.
-        Early buyers get the exclusive Founder NFT 🔥
+        Early buyers get the exclusive Founder NFT.
       </motion.p>
+
+      <div className="flex gap-6 mt-6 text-2xl text-blue-500">
+        <FaRocket title="Buy Token" />
+        <FaStar title="Earn Rewards" />
+        <FaUserShield title="Founder Badge" />
+      </div>
+
       <motion.button
         onClick={onProceed}
-        className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all"
+        className="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all cursor-pointer"
         whileTap={{ scale: 0.95 }}
       >
-        Let’s Go 🚀
+        Let’s Go
       </motion.button>
     </div>
   );
