@@ -40,7 +40,7 @@ const uniswapV3RouterAbi = [
 export default function SwapToBloom() {
   const { address } = useAccount();
   const [amount, setAmount] = useState("");
-  const [txHash, setTxHash] = useState<string | undefined>(undefined);
+  const [txHash, setTxHash] = useState<`0x${string}` | undefined>(undefined);
   const [error, setError] = useState<string | null>(null);
 
   // Get BASE balance
@@ -51,12 +51,11 @@ export default function SwapToBloom() {
   });
 
   // Prepare contract write
-  const { data: writeData, isPending, error: writeError, writeContract } = useWriteContract();
+  const { isPending, writeContract } = useWriteContract();
 
   // Wait for transaction receipt
   const { isLoading: txLoading, isSuccess: txSuccess } = useWaitForTransactionReceipt({
     hash: txHash,
-    enabled: Boolean(txHash),
   });
 
   const handleSwap = async () => {
@@ -73,15 +72,18 @@ export default function SwapToBloom() {
         amountOutMinimum: 0n, // WARNING: set slippage in production
         sqrtPriceLimitX96: 0n,
       };
-      const result = await writeContract({
+      const result: unknown = await writeContract({
         address: UNISWAP_V3_ROUTER,
         abi: uniswapV3RouterAbi,
         functionName: "exactInputSingle",
         args: [params],
         value,
       });
-      // result is the transaction hash
-      setTxHash(result);
+      if (typeof result === 'string' && result.startsWith('0x')) {
+        setTxHash(result as `0x${string}`);
+      } else {
+        setError("Transaction did not return a valid string hash.");
+      }
     } catch (err: any) {
       setError(err?.shortMessage || err?.message || "Transaction failed");
     }
