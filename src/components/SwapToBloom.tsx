@@ -60,7 +60,6 @@ export default function SwapToBloom({ onBack }: { onBack?: () => void }) {
     abi: erc20Abi,
     functionName: "balanceOf",
     args: address ? [address] : undefined,
-    enabled: !!address,
   });
   const usdcBalance = usdcRaw ? (Number(usdcRaw) / 10 ** USDC_DECIMALS).toLocaleString(undefined, { maximumFractionDigits: 2 }) : "0";
 
