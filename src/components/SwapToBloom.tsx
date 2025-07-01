@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useAccount, useBalance, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
+import { useAccount, useBalance, useWriteContract, useWaitForTransactionReceipt, useReadContract } from "wagmi";
+import { erc20Abi } from "viem";
 
 // Uniswap V3 Router address on Base mainnet
 const UNISWAP_V3_ROUTER = "0x327Df1E6de05895d2ab08513aaDD9313Fe505d86";
@@ -7,6 +8,9 @@ const UNISWAP_V3_ROUTER = "0x327Df1E6de05895d2ab08513aaDD9313Fe505d86";
 const BLOOM_TOKEN = "0x14d1461e2a88929d9ac36c152bd54f58cb8095fe";
 // BASE native token address for Uniswap (WETH on Base)
 const BASE_TOKEN = "0x4200000000000000000000000000000000000006";
+// USDC contract address on Base
+const USDC_TOKEN = "0xd9aaEC86b65d86f6a7b5b1b0c42ffa531710b6ca";
+const USDC_DECIMALS = 6;
 
 // Minimal ABI for Uniswap V3 exactInputSingle
 const uniswapV3RouterAbi = [
@@ -49,6 +53,16 @@ export default function SwapToBloom({ onBack }: { onBack?: () => void }) {
     chainId: 8453, // Base mainnet
     token: undefined, // native token
   });
+
+  // Get USDC balance
+  const { data: usdcRaw, isLoading: loadingUsdc } = useReadContract({
+    address: USDC_TOKEN,
+    abi: erc20Abi,
+    functionName: "balanceOf",
+    args: address ? [address] : undefined,
+    enabled: !!address,
+  });
+  const usdcBalance = usdcRaw ? (Number(usdcRaw) / 10 ** USDC_DECIMALS).toLocaleString(undefined, { maximumFractionDigits: 2 }) : "0";
 
   // Prepare contract write
   const { isPending, writeContract } = useWriteContract();
@@ -107,6 +121,11 @@ export default function SwapToBloom({ onBack }: { onBack?: () => void }) {
       <div className="mb-2 text-gray-700">
         Your BASE balance: {loadingBalance ? "..." : baseBalance?.formatted || 0}
       </div>
+      {address && (
+        <div className="mb-2 text-gray-700">
+          Your USDC balance: {loadingUsdc ? "..." : usdcBalance}
+        </div>
+      )}
       <input
         type="number"
         min="0"
