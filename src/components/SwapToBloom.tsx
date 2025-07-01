@@ -1,0 +1,133 @@
+import { useState } from "react";
+import { useAccount, useBalance, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
+
+// Uniswap V3 Router address on Base mainnet
+const UNISWAP_V3_ROUTER = "0x327Df1E6de05895d2ab08513aaDD9313Fe505d86";
+// BLOOM token address
+const BLOOM_TOKEN = "0x14d1461e2a88929d9ac36c152bd54f58cb8095fe";
+// BASE native token address for Uniswap (WETH on Base)
+const BASE_TOKEN = "0x4200000000000000000000000000000000000006";
+
+// Minimal ABI for Uniswap V3 exactInputSingle
+const uniswapV3RouterAbi = [
+  {
+    "inputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "tokenIn", "type": "address" },
+          { "internalType": "address", "name": "tokenOut", "type": "address" },
+          { "internalType": "uint24", "name": "fee", "type": "uint24" },
+          { "internalType": "address", "name": "recipient", "type": "address" },
+          { "internalType": "uint256", "name": "deadline", "type": "uint256" },
+          { "internalType": "uint256", "name": "amountIn", "type": "uint256" },
+          { "internalType": "uint256", "name": "amountOutMinimum", "type": "uint256" },
+          { "internalType": "uint160", "name": "sqrtPriceLimitX96", "type": "uint160" }
+        ],
+        "internalType": "struct ISwapRouter.ExactInputSingleParams",
+        "name": "params",
+        "type": "tuple"
+      }
+    ],
+    "name": "exactInputSingle",
+    "outputs": [
+      { "internalType": "uint256", "name": "amountOut", "type": "uint256" }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  }
+];
+
+export default function SwapToBloom() {
+  const { address } = useAccount();
+  const [amount, setAmount] = useState("");
+  const [txHash, setTxHash] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string | null>(null);
+
+  // Get BASE balance
+  const { data: baseBalance, isLoading: loadingBalance } = useBalance({
+    address,
+    chainId: 8453, // Base mainnet
+    token: undefined, // native token
+  });
+
+  // Prepare contract write
+  const { data: writeData, isPending, error: writeError, writeContract } = useWriteContract();
+
+  // Wait for transaction receipt
+  const { isLoading: txLoading, isSuccess: txSuccess } = useWaitForTransactionReceipt({
+    hash: txHash,
+    enabled: Boolean(txHash),
+  });
+
+  const handleSwap = async () => {
+    setError(null);
+    try {
+      const value = amount ? BigInt(Math.floor(Number(amount) * 1e18)) : 0n;
+      const params = {
+        tokenIn: BASE_TOKEN,
+        tokenOut: BLOOM_TOKEN,
+        fee: 500, // 0.05% pool fee
+        recipient: address,
+        deadline: Math.floor(Date.now() / 1000) + 60 * 10, // 10 min from now
+        amountIn: value,
+        amountOutMinimum: 0n, // WARNING: set slippage in production
+        sqrtPriceLimitX96: 0n,
+      };
+      const result = await writeContract({
+        address: UNISWAP_V3_ROUTER,
+        abi: uniswapV3RouterAbi,
+        functionName: "exactInputSingle",
+        args: [params],
+        value,
+      });
+      // result is the transaction hash
+      setTxHash(result);
+    } catch (err: any) {
+      setError(err?.shortMessage || err?.message || "Transaction failed");
+    }
+  };
+
+  const notEnoughBase =
+    baseBalance && amount && Number(amount) > Number(baseBalance.formatted);
+
+  return (
+    <div className="bg-white p-6 rounded-xl shadow-lg max-w-md mx-auto mt-8 text-center">
+      <h2 className="text-2xl font-bold mb-4 text-blue-600">Swap BASE for $BLOOM</h2>
+      <div className="mb-2 text-gray-700">
+        Your BASE balance: {loadingBalance ? "..." : baseBalance?.formatted || 0}
+      </div>
+      <input
+        type="number"
+        min="0"
+        step="0.0001"
+        placeholder="Amount of BASE to swap"
+        value={amount}
+        onChange={e => setAmount(e.target.value)}
+        className="border rounded px-4 py-2 mb-4 w-full"
+      />
+      <button
+        className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+        onClick={handleSwap}
+        disabled={
+          !address ||
+          !amount ||
+          Number(amount) <= 0 ||
+          notEnoughBase ||
+          isPending ||
+          txLoading
+        }
+      >
+        {isPending || txLoading ? "Swapping..." : "Swap"}
+      </button>
+      {notEnoughBase && (
+        <div className="text-red-500 mt-2">Not enough BASE balance.</div>
+      )}
+      {error && <div className="text-red-500 mt-2">{error}</div>}
+      {txSuccess && txHash && (
+        <div className="text-green-600 mt-2">
+          Swap successful! <a href={`https://basescan.org/tx/${txHash}`} target="_blank" rel="noopener noreferrer" className="underline">View on BaseScan</a>
+        </div>
+      )}
+    </div>
+  );
+} 

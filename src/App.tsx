@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar"; // <- new
 import "./index.css"; // <- for background styling
 import { useTokenBalance } from "./hooks/useTokenBalance";
 import { FaRocket } from "react-icons/fa";
+import SwapToBloom from "./components/SwapToBloom";
 
 function App() {
   const [started, setStarted] = useState(false);
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <>
+      <SwapToBloom />
       <div className="background-circles">
         <div className="circle" />
         <div className="circle" />
