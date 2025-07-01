@@ -1,6 +1,6 @@
 // src/components/Welcome.tsx
 import { motion } from "framer-motion";
-import { FaRocket, FaStar, FaUserShield } from "react-icons/fa";
+import { FaRocket, FaStar, FaUserShield, FaWallet } from "react-icons/fa";
 
 export default function Welcome({ onProceed }: { onProceed: () => void }) {
   return (
@@ -33,10 +33,10 @@ export default function Welcome({ onProceed }: { onProceed: () => void }) {
 
       <motion.button
         onClick={() => onProceed()}
-        className="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all cursor-pointer"
+        className="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all cursor-pointer flex items-center gap-2 justify-center"
         whileTap={{ scale: 0.95 }}
       >
-        Connect Wallet
+        <FaWallet className="text-lg" /> Connect Wallet
       </motion.button>
     </div>
   );
