@@ -4,7 +4,6 @@ import Welcome from "./components/Welcome";
 import Navbar from "./components/Navbar"; // <- new
 import "./index.css"; // <- for background styling
 import { useTokenBalance } from "./hooks/useTokenBalance";
-import { FaRocket } from "react-icons/fa";
 import SwapToBloom from "./components/SwapToBloom";
 
 function App() {
