@@ -4,7 +4,7 @@ import { FaRocket, FaStar, FaUserShield } from "react-icons/fa";
 
 export default function Welcome({ onProceed }: { onProceed: () => void }) {
   return (
-    <div className="min-h-screen bg-white text-blue-600 flex flex-col justify-center items-center p-6 text-center">
+    <div className="min-h-screen bg-white text-blue-600 flex flex-col justify-center items-center p-6 text-center relative z-10">
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export default function Welcome({ onProceed }: { onProceed: () => void }) {
       </div>
 
       <motion.button
-        onClick={onProceed}
+        onClick={() => onProceed()}
         className="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all cursor-pointer"
         whileTap={{ scale: 0.95 }}
       >
@@ -41,3 +41,5 @@ export default function Welcome({ onProceed }: { onProceed: () => void }) {
     </div>
   );
 }
+
+
