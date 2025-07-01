@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useAccount, useBalance, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
-import React from "react";
 
 // Uniswap V3 Router address on Base mainnet
 const UNISWAP_V3_ROUTER = "0x327Df1E6de05895d2ab08513aaDD9313Fe505d86";
