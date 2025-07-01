@@ -38,9 +38,11 @@ function ConnectMenu() {
   if (isConnected) {
     return (
       <div className="text-center">
+        {address && (
         <p className="text-sm mb-4 text-gray-600">
           Connected: {address.slice(0, 6)}...{address.slice(-4)}
         </p>
+        )}
         <button className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
           Buy Token (soon)
         </button>
