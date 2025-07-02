@@ -35,10 +35,23 @@ export default function Profile({ hasFounderNFT, founderMintDate, onBuyMore }: {
       <div style={{ background: "white", color: baseBlue, borderRadius: 18, padding: 24, marginBottom: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", textAlign: "center" }}>
         <div style={{ fontWeight: 600, fontSize: 18, marginBottom: 12 }}>NFTs & Badges</div>
         {hasFounderNFT ? (
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <img src="/founder-nft.png" alt="Founder Badge NFT" style={{ width: 80, height: 80, borderRadius: 16, marginBottom: 10, background: "#e0e7ef" }} />
-            <div style={{ fontWeight: 600, fontSize: 16 }}>Founder Badge NFT</div>
-            <div style={{ fontSize: 14, color: "#888", marginTop: 2 }}>Minted {founderMintDate || "recently"}</div>
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#e0e7ef",
+            borderRadius: 16,
+            padding: 24,
+            minHeight: 180,
+            marginTop: 8,
+            maxWidth: 260,
+            marginLeft: "auto",
+            marginRight: "auto"
+          }}>
+            <img src="/nft-placeholder.png" alt="NFT Placeholder" style={{ width: 80, height: 80, borderRadius: 12, marginBottom: 12, background: "#fff" }} />
+            <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 4 }}>🏅 Founder Badge</div>
+            <div style={{ fontSize: 15, color: baseBlue, opacity: 0.8 }}>Minted: July 2, 2025</div>
           </div>
         ) : (
           <div style={{
