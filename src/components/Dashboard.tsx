@@ -46,7 +46,7 @@ export default function Dashboard() {
       }}
     >
       {activeTab === "profile" ? (
-        <Profile hasFounderNFT={claimed} founderMintDate={claimed ? "2024-06-01" : undefined} onBuyMore={handleBuyMore} />
+        <Profile hasFounderNFT={claimed} onBuyMore={handleBuyMore} />
       ) : (
         <div
           style={{
