@@ -13,11 +13,11 @@ const founderAddresses: string[] = [
   // e.g. "0x123...", "0x456..."
 ];
 
-export default function Dashboard() {
+export default function Dashboard({ initialTab }: { initialTab?: string }) {
   const { address } = useAccount();
   const { balance } = useTokenBalance();
   const [claimed, setClaimed] = useState(false);
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeTab, setActiveTab] = useState(initialTab || "dashboard");
 
   // Add address to founderAddresses if not present and list < 100 (mock logic)
   useEffect(() => {
