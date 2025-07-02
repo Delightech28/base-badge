@@ -42,6 +42,7 @@ export default function Dashboard() {
         background: baseBlue,
         color: "white",
         padding: "2rem",
+        paddingBottom: "5.5rem",
         transition: "background 0.5s"
       }}
     >
@@ -89,7 +90,9 @@ export default function Dashboard() {
                     fontWeight: 600,
                     fontSize: 16,
                     cursor: "pointer",
-                    transition: "background 0.2s"
+                    transition: "background 0.2s",
+                    zIndex: 10,
+                    marginTop: 12
                   }}
                   onClick={() => setClaimed(true)}
                 >
