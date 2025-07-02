@@ -58,26 +58,32 @@ function App() {
           <SwapToBloom onBack={goBack} />
         </div>
       ) : currentPage === "buy" ? (
-        <div className="min-h-screen flex flex-col items-center justify-center text-center p-6 relative z-10 text-white">
-          <h2 className="text-2xl font-semibold mb-4 text-blue-600">
-            Buy $BLOOM to get started
-          </h2>
-          <button
-            className="mt-4 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
-            onClick={() => {
-              if (!address) {
-                setShowConnectPrompt(true);
-                goTo("connect");
-              } else {
-                goTo("swap");
-              }
-            }}
-          >
-            Buy $BLOOM
-          </button>
-        </div>
+        hasBalance ? (
+          <div className="min-h-screen flex flex-col items-center justify-center text-center p-6 relative z-10 text-white">
+            <SwapToBloom onBack={goBack} />
+          </div>
+        ) : (
+          <div className="min-h-screen flex flex-col items-center justify-center text-center p-6 relative z-10 text-white">
+            <h2 className="text-2xl font-semibold mb-4 text-blue-600">
+              Buy $BLOOM to get started
+            </h2>
+            <button
+              className="mt-4 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer"
+              onClick={() => {
+                if (!address) {
+                  setShowConnectPrompt(true);
+                  goTo("connect");
+                } else {
+                  goTo("swap");
+                }
+              }}
+            >
+              Buy $BLOOM
+            </button>
+          </div>
+        )
       ) : (
-        <Welcome onProceed={() => { goTo("buy"); }} />
+        <Welcome onProceed={() => { hasBalance ? goTo("swap") : goTo("buy"); }} />
       )}
     </>
   );
