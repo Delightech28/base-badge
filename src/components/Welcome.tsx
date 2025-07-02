@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { FaRocket, FaStar, FaUserShield, FaWallet } from "react-icons/fa";
 
-export default function Welcome({ onProceed }: { onProceed: () => void }) {
+export default function Welcome({ onConnect, onProceed }: { onConnect?: () => void; onProceed?: () => void }) {
   return (
     <div className="min-h-screen bg-white/80 text-blue-600 flex flex-col justify-center items-center p-6 text-center relative z-10">
       <motion.h1
@@ -32,7 +32,7 @@ export default function Welcome({ onProceed }: { onProceed: () => void }) {
       </div>
 
       <motion.button
-        onClick={() => onProceed()}
+        onClick={onConnect}
         className="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all cursor-pointer flex items-center gap-2 justify-center"
         whileTap={{ scale: 0.95 }}
       >
