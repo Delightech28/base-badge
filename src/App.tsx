@@ -3,8 +3,6 @@ import { sdk } from "@farcaster/frame-sdk";
 import Welcome from "./components/Welcome";
 import Navbar from "./components/Navbar"; // <- new
 import "./index.css"; // <- for background styling
-import SwapToBloom from "./components/SwapToBloom";
-import ConnectWallet from "./components/ConnectWallet";
 import { useAccount } from "wagmi";
 import { useTokenBalance } from "./hooks/useTokenBalance";
 
@@ -16,8 +14,6 @@ function App() {
 
   // Navigation helpers
   const goTo = (page: string) => setNavStack((stack) => [...stack, page]);
-  const goBack = () => setNavStack((stack) => (stack.length > 1 ? stack.slice(0, -1) : stack));
-  const currentPage = navStack[navStack.length - 1];
 
   useEffect(() => {
     sdk.actions.ready();

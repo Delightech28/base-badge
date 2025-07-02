@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { FaRocket, FaStar, FaUserShield, FaWallet } from "react-icons/fa";
 
-export default function Welcome({ onConnect, onProceed }: { onConnect?: () => void; onProceed?: () => void }) {
+export default function Welcome({ onConnect }: { onConnect?: () => void }) {
   return (
     <div className="min-h-screen bg-white/80 text-blue-600 flex flex-col justify-center items-center p-6 text-center relative z-10">
       <motion.h1
