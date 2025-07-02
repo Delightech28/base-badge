@@ -3,9 +3,8 @@ import { useTokenBalance } from "../hooks/useTokenBalance";
 
 const baseBlue = "#001f3f";
 
-export default function Profile({ hasFounderNFT, founderMintDate, onBuyMore }: {
+export default function Profile({ hasFounderNFT, onBuyMore }: {
   hasFounderNFT: boolean;
-  founderMintDate?: string;
   onBuyMore: () => void;
 }) {
   const { address } = useAccount();
