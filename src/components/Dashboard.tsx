@@ -1,20 +1,32 @@
 import { useAccount } from "wagmi";
 import { useTokenBalance } from "../hooks/useTokenBalance";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BottomNav from "./BottomNav";
 
 // Base dark blue
 const baseBlue = "#001f3f";
 
+// Mock: List of first 100 addresses (in a real app, fetch from backend or contract)
+const founderAddresses: string[] = [
+  // Add up to 100 addresses here for demo/testing
+  // e.g. "0x123...", "0x456..."
+];
+
 export default function Dashboard() {
   const { address } = useAccount();
   const { balance } = useTokenBalance();
-  // Mock eligibility: early buyers or balance >= 1000
-  const isFounderEligible = Number(balance) >= 1000;
-  // Mock claim status
   const [claimed, setClaimed] = useState(false);
-  // Bottom nav state
   const [activeTab, setActiveTab] = useState("dashboard");
+
+  // Add address to founderAddresses if not present and list < 100 (mock logic)
+  useEffect(() => {
+    if (address && founderAddresses.length < 100 && !founderAddresses.includes(address)) {
+      founderAddresses.push(address);
+    }
+  }, [address]);
+
+  const isFounder = address ? founderAddresses.includes(address) : false;
+  const founderFull = founderAddresses.length >= 100;
 
   return (
     <div
@@ -53,7 +65,7 @@ export default function Dashboard() {
         </div>
         <div style={{ marginBottom: 24 }}>
           <div style={{ fontWeight: 500, fontSize: 17, marginBottom: 8 }}>Founder NFT</div>
-          {isFounderEligible ? (
+          {isFounder ? (
             claimed ? (
               <div style={{ color: "#2ecc40", fontWeight: 600 }}>Already Claimed</div>
             ) : (
@@ -74,9 +86,13 @@ export default function Dashboard() {
                 Mint Founder Badge
               </button>
             )
+          ) : founderFull ? (
+            <div style={{ color: "#888", fontWeight: 500 }}>
+              Founder Badge is no longer available.
+            </div>
           ) : (
             <div style={{ color: "#888", fontWeight: 500 }}>
-              Not eligible (hold at least 1,000 $BADGE to qualify)
+              Connect your wallet to see if you qualify.
             </div>
           )}
         </div>
