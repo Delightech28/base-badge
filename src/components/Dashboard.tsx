@@ -1,6 +1,7 @@
 import { useAccount } from "wagmi";
 import { useTokenBalance } from "../hooks/useTokenBalance";
 import { useState } from "react";
+import BottomNav from "./BottomNav";
 
 // Base dark blue
 const baseBlue = "#001f3f";
@@ -12,6 +13,8 @@ export default function Dashboard() {
   const isFounderEligible = Number(balance) >= 1000;
   // Mock claim status
   const [claimed, setClaimed] = useState(false);
+  // Bottom nav state
+  const [activeTab, setActiveTab] = useState("dashboard");
 
   return (
     <div
@@ -33,6 +36,7 @@ export default function Dashboard() {
           maxWidth: 420,
           width: "100%",
           textAlign: "center",
+          margin: "0 auto",
           transition: "box-shadow 0.3s"
         }}
       >
@@ -77,6 +81,7 @@ export default function Dashboard() {
           )}
         </div>
       </div>
+      <BottomNav active={activeTab} onChange={setActiveTab} />
     </div>
   );
 } 
