@@ -4,7 +4,7 @@ import { FaRocket, FaStar, FaUserShield, FaWallet } from "react-icons/fa";
 
 export default function Welcome({ onProceed }: { onProceed: () => void }) {
   return (
-    <div className="min-h-screen bg-white text-blue-600 flex flex-col justify-center items-center p-6 text-center relative z-10">
+    <div className="min-h-screen bg-white/80 text-blue-600 flex flex-col justify-center items-center p-6 text-center relative z-10">
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
