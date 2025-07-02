@@ -41,7 +41,20 @@ export default function Profile({ hasFounderNFT, founderMintDate, onBuyMore }: {
             <div style={{ fontSize: 14, color: "#888", marginTop: 2 }}>Minted {founderMintDate || "recently"}</div>
           </div>
         ) : (
-          <div style={{ color: baseBlue, opacity: 0.7, fontSize: 16, marginTop: 8 }}>🎖 No NFT yet</div>
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#e0e7ef",
+            borderRadius: 16,
+            padding: 24,
+            minHeight: 120,
+            marginTop: 8
+          }}>
+            <span style={{ fontSize: 48, color: baseBlue, opacity: 0.15, marginBottom: 8 }}>🎖</span>
+            <div style={{ color: baseBlue, opacity: 0.7, fontSize: 16 }}>No NFT yet</div>
+          </div>
         )}
       </div>
 
