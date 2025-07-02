@@ -15,7 +15,7 @@ const founderAddresses: string[] = [
 
 export default function Dashboard({ initialTab }: { initialTab?: string }) {
   const { address } = useAccount();
-  const { balance } = useTokenBalance();
+  const { balance, hasBalance } = useTokenBalance();
   const [claimed, setClaimed] = useState(false);
   const [activeTab, setActiveTab] = useState(initialTab || "dashboard");
 
@@ -78,26 +78,29 @@ export default function Dashboard({ initialTab }: { initialTab?: string }) {
           <div style={{ marginBottom: 24 }}>
             <div style={{ fontWeight: 500, fontSize: 17, marginBottom: 8 }}>Founder NFT</div>
             {isFounder ? (
-              claimed ? (
+              !hasBalance ? (
+                <div style={{ color: "#888", fontWeight: 500 }}>
+                  You must hold $BADGE to mint the Founder Badge.
+                </div>
+              ) : claimed ? (
                 <div style={{ color: "#2ecc40", fontWeight: 600 }}>Already Claimed</div>
               ) : (
                 <button
-                style={{
-                  background: baseBlue,
-                  color: "white",
-                  border: "none",
-                  borderRadius: 8,
-                  padding: "10px 24px",
-                  fontWeight: 600,
-                  fontSize: 16,
-                  cursor: "pointer",
-                  pointerEvents: "auto",
-                  transition: "background 0.2s",
-                  zIndex: 10,
-                  marginTop: 12,
-                  position: "relative",
-                }}
-                
+                  style={{
+                    background: baseBlue,
+                    color: "white",
+                    border: "none",
+                    borderRadius: 8,
+                    padding: "10px 24px",
+                    fontWeight: 600,
+                    fontSize: 16,
+                    cursor: "pointer",
+                    pointerEvents: "auto",
+                    transition: "background 0.2s",
+                    zIndex: 10,
+                    marginTop: 12,
+                    position: "relative",
+                  }}
                   onClick={() => setClaimed(true)}
                 >
                   Mint Founder Badge
