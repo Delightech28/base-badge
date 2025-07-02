@@ -48,9 +48,12 @@ export default function Profile({ hasFounderNFT, onBuyMore }: {
             marginLeft: "auto",
             marginRight: "auto"
           }}>
-            <img src="/logo.jpeg" alt="NFT Placeholder" style={{ width: 80, height: 80, borderRadius: 12, marginBottom: 12, background: "#fff" }} />
-            <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 4 }}>🏅 Founder Badge</div>
-            <div style={{ fontSize: 15, color: baseBlue, opacity: 0.8 }}>Minted: July 2, 2025</div>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>Founder Badge</div>
+              <span style={{ fontSize: 32, marginBottom: 6 }}>🏅</span>
+              <img src="/logo.jpeg" alt="NFT Placeholder" style={{ width: 60, height: 60, borderRadius: 12, marginBottom: 8, background: "#fff" }} />
+              <div style={{ fontSize: 12, color: baseBlue, opacity: 0.6, marginTop: 2 }}>Minted: July 2, 2025</div>
+            </div>
           </div>
         ) : (
           <div style={{
