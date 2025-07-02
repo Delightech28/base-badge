@@ -1,11 +1,11 @@
 {
-    "frame": {
+    "miniapp": {
       "version": "1",
       "name": "BaseBadge",
-      "iconUrl": "https://base-badge.vercel.app/icon.png",
+      "iconUrl": "https://base-badge.vercel.app/logo.png",
       "homeUrl": "https://base-badge.vercel.app",
-      "splashImageUrl": "https://base-badge.vercel.app/image.jpg",
-      "splashBackgroundColor": "#f5f0ec"
+      "splashImageUrl": "https://base-badge.vercel.app/logo.png",
+      "splashBackgroundColor": "#001f3f"
     }
   }
   
