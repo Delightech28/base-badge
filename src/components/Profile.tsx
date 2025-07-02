@@ -12,7 +12,7 @@ export default function Profile({ hasFounderNFT, onBuyMore }: {
   const shortAddress = address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "-";
 
   return (
-    <div style={{ minHeight: "100vh", background: baseBlue, color: "white", padding: "2rem" }}>
+    <div style={{ minHeight: "100%", background: baseBlue, color: "white", padding: "2rem", overflowY: "auto" }}>
       {/* User Info Section */}
       <div style={{ background: "white", color: baseBlue, borderRadius: 18, padding: 24, marginBottom: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.06)", textAlign: "center" }}>
         <div style={{ fontWeight: 600, fontSize: 18, marginBottom: 8 }}>Wallet</div>
