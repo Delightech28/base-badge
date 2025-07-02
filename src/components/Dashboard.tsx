@@ -17,10 +17,8 @@ export default function Dashboard() {
     <div
       style={{
         minHeight: "100vh",
-        height: "100vh",
         background: baseBlue,
         color: "white",
-        overflowY: "auto",
         padding: "2rem",
         transition: "background 0.5s"
       }}
@@ -77,15 +75,6 @@ export default function Dashboard() {
               Not eligible (hold at least 1,000 $BADGE to qualify)
             </div>
           )}
-        </div>
-        <div style={{ marginTop: 32, textAlign: "left" }}>
-          <div style={{ fontWeight: 600, fontSize: 17, marginBottom: 8 }}>Example Tasks (coming soon):</div>
-          <ul style={{ paddingLeft: 20, color: baseBlue, opacity: 0.85, fontSize: 15 }}>
-            <li>Complete an onchain quest</li>
-            <li>Refer a friend to Base Badge</li>
-            <li>Vote in a DAO proposal</li>
-            <li>Mint a special NFT</li>
-          </ul>
         </div>
       </div>
     </div>
