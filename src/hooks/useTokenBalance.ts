@@ -3,7 +3,7 @@ import { erc20Abi } from "viem";
 import { useAccount, usePublicClient } from "wagmi";
 import { formatUnits } from "viem";
 
-const TOKEN_ADDRESS = "0x14d1461e2a88929d9ac36c152bd54f58cb8095fe"; // $BLOOM
+const TOKEN_ADDRESS = "0x17912e906686a8452D25ACA082ED886DD05d406E"; // $BADGE
 const TOKEN_DECIMALS = 18;
 
 export function useTokenBalance() {

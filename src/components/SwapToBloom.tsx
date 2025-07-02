@@ -4,7 +4,7 @@ import { useAccount, useBalance, useWriteContract, useWaitForTransactionReceipt 
 // Uniswap V3 Router address on Base mainnet
 const UNISWAP_V3_ROUTER = "0x327Df1E6de05895d2ab08513aaDD9313Fe505d86";
 // BLOOM token address
-const BLOOM_TOKEN = "0x14d1461e2a88929d9ac36c152bd54f58cb8095fe";
+const BLOOM_TOKEN = "0x17912e906686a8452D25ACA082ED886DD05d406E";
 // BASE native token address for Uniswap (WETH on Base)
 const BASE_TOKEN = "0x4200000000000000000000000000000000000006";
 
