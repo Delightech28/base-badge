@@ -81,19 +81,22 @@ export default function Dashboard() {
                 <div style={{ color: "#2ecc40", fontWeight: 600 }}>Already Claimed</div>
               ) : (
                 <button
-                  style={{
-                    background: baseBlue,
-                    color: "white",
-                    border: "none",
-                    borderRadius: 8,
-                    padding: "10px 24px",
-                    fontWeight: 600,
-                    fontSize: 16,
-                    cursor: "pointer",
-                    transition: "background 0.2s",
-                    zIndex: 10,
-                    marginTop: 12
-                  }}
+                style={{
+                  background: baseBlue,
+                  color: "white",
+                  border: "none",
+                  borderRadius: 8,
+                  padding: "10px 24px",
+                  fontWeight: 600,
+                  fontSize: 16,
+                  cursor: "pointer",
+                  pointerEvents: "auto",
+                  transition: "background 0.2s",
+                  zIndex: 10,
+                  marginTop: 12,
+                  position: "relative",
+                }}
+                
                   onClick={() => setClaimed(true)}
                 >
                   Mint Founder Badge
