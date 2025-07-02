@@ -10,26 +10,10 @@ function App() {
   const { hasBalance } = useTokenBalance();
   const [showConnectPrompt, setShowConnectPrompt] = useState(false);
   const { address } = useAccount();
-  const [navStack, setNavStack] = useState<string[]>(["welcome"]);
-
-  // Navigation helpers
-  const goTo = (page: string) => setNavStack((stack) => [...stack, page]);
 
   useEffect(() => {
     sdk.actions.ready();
   }, []);
-
-  // Automatically show correct section after connecting
-  useEffect(() => {
-    if (address && showConnectPrompt) {
-      setShowConnectPrompt(false);
-      if (hasBalance) {
-        goTo("swap");
-      } else {
-        goTo("buy");
-      }
-    }
-  }, [address, hasBalance, showConnectPrompt]);
 
   return (
     <>
