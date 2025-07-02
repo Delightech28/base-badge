@@ -8,8 +8,6 @@ import { useTokenBalance } from "./hooks/useTokenBalance";
 
 function App() {
   const { hasBalance } = useTokenBalance();
-  const [showConnectPrompt, setShowConnectPrompt] = useState(false);
-  const { address } = useAccount();
 
   useEffect(() => {
     sdk.actions.ready();
@@ -29,7 +27,7 @@ function App() {
           <p className="text-lg">You're eligible for the Founder NFT. Stay tuned!</p>
         </div>
       ) : (
-        <Welcome onConnect={() => setShowConnectPrompt(true)} />
+        <Welcome />
       )}
     </>
   );
