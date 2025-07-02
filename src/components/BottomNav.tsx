@@ -1,5 +1,3 @@
-import React from "react";
-
 const baseBlue = "#001f3f";
 const baseLight = "#3b82f6"; // Base light blue for highlight
 
