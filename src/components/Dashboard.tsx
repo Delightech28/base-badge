@@ -43,7 +43,8 @@ export default function Dashboard() {
         color: "white",
         padding: "2rem",
         paddingBottom: "5.5rem",
-        transition: "background 0.5s"
+        transition: "background 0.5s",
+        overflowY: "auto"
       }}
     >
       {activeTab === "profile" ? (
