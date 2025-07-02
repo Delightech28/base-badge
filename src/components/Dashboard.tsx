@@ -17,12 +17,10 @@ export default function Dashboard() {
     <div
       style={{
         minHeight: "100vh",
+        height: "100vh",
         background: baseBlue,
         color: "white",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
+        overflowY: "auto",
         padding: "2rem",
         transition: "background 0.5s"
       }}
