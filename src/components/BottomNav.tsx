@@ -1,10 +1,12 @@
+import { FaHome, FaBullseye, FaUser } from "react-icons/fa";
+
 const baseBlue = "#001f3f";
 const baseLight = "#3b82f6"; // Base light blue for highlight
 
 const icons = [
-  { key: "dashboard", label: "Dashboard", icon: "🏠" },
-  { key: "tasks", label: "Tasks", icon: "🎯" },
-  { key: "profile", label: "Profile", icon: "🎖️" },
+  { key: "dashboard", label: "Dashboard", icon: <FaHome size={26} /> },
+  { key: "tasks", label: "Tasks", icon: <FaBullseye size={26} /> },
+  { key: "profile", label: "Profile", icon: <FaUser size={26} /> },
 ];
 
 export default function BottomNav({ active, onChange }: {
@@ -53,7 +55,7 @@ export default function BottomNav({ active, onChange }: {
           onMouseOver={e => (e.currentTarget.style.background = "rgba(255,255,255,0.25)")}
           onMouseOut={e => (e.currentTarget.style.background = active === item.key ? "rgba(255,255,255,0.15)" : "transparent")}
         >
-          <span role="img" aria-label={item.label}>{item.icon}</span>
+          {item.icon}
         </button>
       ))}
     </nav>
