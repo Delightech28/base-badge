@@ -1,11 +1,24 @@
 {
-    "miniapp": {
-      "version": "1",
-      "name": "BaseBadge",
-      "iconUrl": "https://base-badge.vercel.app/icon.png",
-      "homeUrl": "https://base-badge.vercel.app",
-      "splashImageUrl": "https://base-badge.vercel.app/image.jpg",
-      "splashBackgroundColor": "#001f3f"
-    }
+  "miniapp": {
+    "version": "1",
+    "name": "BaseBadge",
+    "iconUrl": "https://base-badge.vercel.app/icon.png",
+    "homeUrl": "https://base-badge.vercel.app",
+    "splashImageUrl": "https://base-badge.vercel.app/image.jpg",
+    "splashBackgroundColor": "#001f3f",
+    "subtitle": "Earn rewards with tasks",
+    "description": "Complete tasks and level up with NFTs. Build your on-chain reputation and earn rewards on Base.",
+    "primaryCategory": "finance",
+    "tags": ["rewards", "tasks", "nfts", "earn", "base"],
+    "screenshotUrls": [
+      "https://base-badge.vercel.app/screenshot1.png",
+      "https://base-badge.vercel.app/screenshot2.png",
+      "https://base-badge.vercel.app/screenshot3.png"
+    ],
+    "heroImageUrl": "https://base-badge.vercel.app/og.png",
+    "ogTitle": "BaseBadge - Earn with Tasks, Level Up with NFTs",
+    "ogDescription": "Complete tasks and earn rewards on Base. Level up your on-chain reputation.",
+    "ogImageUrl": "https://base-badge.vercel.app/og.png",
+    "requiredChains": ["eip155:8453"]
   }
-  
+}  
