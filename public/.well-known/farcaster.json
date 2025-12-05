@@ -16,7 +16,7 @@
       "https://base-badge.vercel.app/screenshot3.png"
     ],
     "heroImageUrl": "https://base-badge.vercel.app/og.png",
-    "ogTitle": "BaseBadge — Earn & Level Up",
+    "ogTitle": "BaseBadge Earn and Level Up",
     "ogDescription": "Complete tasks and earn rewards on Base. Level up your on-chain reputation.",
     "ogImageUrl": "https://base-badge.vercel.app/og.png",
     "requiredChains": ["eip155:8453"]
