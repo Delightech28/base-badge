@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { sdk } from "@farcaster/frame-sdk";
+import { sdk } from "@farcaster/miniapp-sdk";
 import Welcome from "./components/Welcome";
 import Navbar from "./components/Navbar";
 import "./index.css";
@@ -17,7 +17,10 @@ function App() {
   };
 
   useEffect(() => {
-    sdk.actions.ready();
+    const initializeMiniApp = async () => {
+      await sdk.actions.ready();
+    };
+    initializeMiniApp();
   }, []);
 
   return (
